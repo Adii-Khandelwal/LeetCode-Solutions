@@ -2,8 +2,8 @@ class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
         
-        int i;
-        int n=nums.size();
+        // int i;
+        // int n=nums.size();
         ////////////////////////////////////////////////
 //         vector<int> vec;
 //                                 // BRUTE FORCE
@@ -22,16 +22,19 @@ public:
 //             nums[i]=0;
 //         }
      ////////////////////////////////////////////////////////
-        int zero=0; // OPTIMISED APPROACH
+//         int zero=0; // OPTIMISED APPROACH
         
-        for(int i=0;i<n;i++)
-        {
-            if(nums[i]!=0)
-            {
-                swap(nums[i],nums[zero]);
-                zero++;
-            }
-        }
+//         for(int i=0;i<n;i++)
+//         {
+//             if(nums[i]!=0)
+//             {
+//                 swap(nums[i],nums[zero]);
+//                 zero++;
+//             }
+//         }
+      //////////////////////////////////////////////////////////////////  
+        stable_partition(nums.begin(),nums.end(),[] (int x){return x;});
+        //one line code if you know STL
         
         
     }
