@@ -1,24 +1,37 @@
-class Solution {
-public:
-    int removeDuplicates(vector<int>& nums) {
-    
-        for(int i=0;i<nums.size()-1;)
+class Solution
+{
+    public:
+        int removeDuplicates(vector<int> &nums)
         {
-            if(nums[i+1]==nums[i])
-            {  
-               auto it=nums.begin()+i;
-                nums.erase(it);
-             
-
-            }
-            else
+    /// USING VECTOR TOOL
+    //       int i,count=1;
+    //     for(i=1;i<nums.size();)
+    //     {
+    //         if(nums[i]==nums[i-1])
+    //         {
+    //            nums.erase(nums.begin()+i);
+    //         }
+    //         else i++;
+    //     }
+    //     return i;
+    // } 
+        // WITHOUT USING VECTOR PROPERTY
+        int i;
+        int j=0;
+        
+        if(nums.size()==0 || nums.size()==1)
+            return nums.size();
+        
+        for(i=0;i<nums.size()-1;i++)
+        {
+            if(nums[i]!=nums[i+1])
             {
-                i++;
+                nums[j++]=nums[i];
             }
-
+            
         }
-        
-    return nums.size();
-    }    
-        
+        nums[j++]=nums[nums.size()-1];
+        return j;
+        }
+    
 };
