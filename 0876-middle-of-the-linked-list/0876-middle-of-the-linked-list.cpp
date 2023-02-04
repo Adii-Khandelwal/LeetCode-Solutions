@@ -11,23 +11,36 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
+//         BRUTE FORCE
         
-        int count=0;
-        ListNode *p=head;
         
-        while(p)
-        {
-            count++;
-            p=p->next;
-        }
-        int n=0;
-        while(n!=count/2)
-        {
-            n++;
-            head=head->next;
+//         int count=0;
+//         ListNode *p=head;
+        
+//         while(p)
+//         {
+//             count++;
+//             p=p->next;
+//         }
+//         int n=0;
+//         while(n!=count/2)
+//         {
+//             n++;
+//             head=head->next;
             
+//         }
+//         return head;
+        
+        ListNode * slow=head;
+        ListNode *fast=head;
+        
+        while(fast && fast->next)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
         }
-        return head;
+        return slow;
+        
         
     }
 };
