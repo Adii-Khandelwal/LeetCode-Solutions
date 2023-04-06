@@ -14,35 +14,47 @@ public:
         if(!head || !head->next)
             return NULL;
         
-//         ListNode*fast=head;
-//         ListNode* slow=head;
-        
-//         while(fast!=NULL && fast->next!=NULL)
-//         {
-//             fast=fast->next->next;
-//             slow=slow->next;
-            
-//             if(fast==slow)
-//                 return fast->next;
-//         }
-//         return NULL;
-        
-        
-        ListNode * node=head;
-        
-        unordered_map<ListNode*,int>mpp;
-        mpp[head]++;
-        
-        while(mpp[node]<2 && node->next )
+        ListNode*fast=head;
+        ListNode* slow=head;
+       ListNode* entry=head; 
+        while(fast!=NULL && fast->next!=NULL && fast->next->next)
         {
-            node=node->next;
-            mpp[node]++;
+            fast=fast->next->next;
+            slow=slow->next;
+            
+            if(fast==slow)
+            {
+                while(entry!=slow)
+                {
+                    slow=slow->next;
+                    entry=entry->next;
+                
+                }
+            return entry;   
+            }
+            
         }
+        return NULL;
         
-        if(mpp[node]==2)
-        return node;
-        else
-            return NULL;
+        
+        //SPACE :O(N) APPROACH
+        
+//         ListNode * node=head;
+        
+//         unordered_map<ListNode*,int>mpp;
+//         mpp[head]++;
+        
+//         while(mpp[node]<2 && node->next )
+//         {
+//             node=node->next;
+//             mpp[node]++;
+//         }
+        
+//         if(mpp[node]==2)
+//         return node;
+//         else
+//             return NULL;
+        
         
         
         
