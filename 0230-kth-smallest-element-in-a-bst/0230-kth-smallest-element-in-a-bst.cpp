@@ -11,27 +11,39 @@
  */
 class Solution {
 public:
+    
+    int count=0;
+    int ans;
     int kthSmallest(TreeNode* root, int k) {
         
-        vector<TreeNode*> vec;
+        // vector<TreeNode*> vec;
+        // int count=0;
         
-        trav(root,vec);
+       
         
-       int x=vec[k-1]->val;
-        return x;
+       
+         trav(root,k);
+       return ans;
+        
+        
+         
         
     }
     
-    void trav(TreeNode* root,vector<TreeNode*> &vec)
+ void trav(TreeNode* root,int &k)
     {
         if(!root)
-            return ;
+            return  ;
         
-        trav(root->left,vec);
+       
+        trav(root->left,k);
         
-        vec.push_back(root);
-        
-        trav(root->right,vec);
+       
+       if(++count==k)
+            ans= root->val;
+       
+        trav(root->right,k);
             
+       return ;
     }
 };
