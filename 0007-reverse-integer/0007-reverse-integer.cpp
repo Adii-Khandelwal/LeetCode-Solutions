@@ -19,9 +19,9 @@ public:
         if(r>INT_MAX || r<INT_MIN)
             return 0;
         if(x<0)
-        return -r;
+        return int(-r);
         else
-            return r;
+            return int(r);
         
       
     }
