@@ -7,7 +7,7 @@ public:
         
         for(int window=0;window<=m-n;window++)
         {
-            for(int i=0;i<m;i++)
+            for(int i=0;i<n;i++)
             {
                 if(needle[i]!=haystack[window+i]){
                     break;
