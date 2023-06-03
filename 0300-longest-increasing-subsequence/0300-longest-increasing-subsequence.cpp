@@ -23,9 +23,23 @@ public:
        
         int n=nums.size();
         
-        vector<vector<int>> dp(n,vector<int> (n+1,-1));
-        return f(0,-1,nums,dp);
+        // vector<vector<int>> dp(n,vector<int> (n+1,-1));
+        // return f(0,-1,nums,dp);
         
+        vector<vector<int>> dp(n+1,vector<int> (n+1,0));
         
+        for(int ind=n-1;ind>=0;ind--)
+        {
+            for(int prev=ind-1;prev>=-1;prev--)
+            {
+                 int len= 0+dp[ind+1][prev+1];
+        
+                 if(prev==-1 or nums[ind]>nums[prev])
+                    len=max(len,1+dp[ind+1][ind+1]);
+        
+              dp[ind][prev+1]= len;
+            }
+        }
+     return dp[0][0];   
     }
 };
