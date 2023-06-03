@@ -33,9 +33,9 @@ int maxProfit(vector<int>& prices) {
         // vector<vector<int>> dp(n,vector<int>(2,-1));
         // return f(0,1,prices,dp);
     
-    vector<vector<int>> dp(n+1,vector<int>(2,0));
+    vector<int> prev(2,0),curr(2,0);
     
-    dp[n-1][0]=dp[n-1][1]=0;
+    prev[0]=prev[1]=0;
     
     for(int ind=n-1;ind>=0;ind--)
     {
@@ -44,17 +44,21 @@ int maxProfit(vector<int>& prices) {
          int profit=0;
         if(buy)
         {
-            profit=max(-prices[ind]+dp[ind+1][0],0+dp[ind+1][1]);
+            profit=max(-prices[ind]+prev[0],0+prev[1]);
             
         }
         else
         {
-            profit=max(prices[ind] + dp[ind+1][1],0+ dp[ind+1][0]);
+            profit=max(prices[ind] + prev[1],0+ prev[0]);
         }
         
-      dp[ind][buy]= profit;}
+     curr[buy]= profit;
+        
+        prev=curr;
+        
+        }
         }  
              
-        return dp[0][1];
+        return prev[1];
     }
 };
