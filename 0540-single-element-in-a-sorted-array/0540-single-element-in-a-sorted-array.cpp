@@ -19,8 +19,10 @@ public:
             if(nums[mid]!=nums[mid-1] and nums[mid]!=nums[mid+1])
                 return nums[mid];
             
+            // if element is after mid, the pairs will have index as (even,odd) and if element is before mid, pairs with mid will have index as (odd,even)
+            
             if((mid%2==1 and nums[mid-1]==nums[mid]) or( mid%2==0 and nums[mid]==nums[mid+1]))
-                low=mid+1;
+                low=mid+1; 
             else
                 high=mid-1;
         }
