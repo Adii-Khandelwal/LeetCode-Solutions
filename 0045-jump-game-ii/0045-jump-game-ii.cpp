@@ -17,12 +17,29 @@ public:
         
             
     }
+    // https://leetcode.com/problems/jump-game-ii/discuss/1192401/Easy-Solutions-w-Explanation-or-Optimizations-from-Brute-Force-to-DP-to-Greedy-BFS
     
     int jump(vector<int>& nums) {
        
+//         int n=nums.size();
+//         vector<int>dp (n,-1);
+//         return f(0,nums,dp);
+        
+        int i=0,maxreach=0,lastpos=0;
+        int jump=0;
         int n=nums.size();
-        vector<int>dp (n,-1);
-        return f(0,nums,dp);
+        while(lastpos<n-1)
+        {
+            maxreach=max(maxreach,i+nums[i]);
+            if(i==lastpos)
+            {
+                lastpos=maxreach;
+                jump++;
+            }
+            i++;
+        }
+        return  jump;
+        
         
     }
 };
