@@ -11,33 +11,24 @@
  */
 class Solution {
 public:
-    void f(string &ans,TreeNode* root)
-    {
-        if(!root)
-            return ;
-        ans+='(';
-        if(root->left)
-        {  f(ans,root->left);
-        ans=ans+to_string(root->left->val);
-        }ans+=')';
-        if(root->right)
-        {    ans+='(';
-         f(ans,root->right);
-        ans+=to_string(root->right->val);
-        ans+=')';
-        }
+     static string tree2str(const TreeNode* root) {
+        string ans;
+        tree2Str(root, ans);
+        return ans;
     }
-    
-    
-    string tree2str(TreeNode* root) {
-        
-        string ans = to_string(root->val);
-		if (root->left) //left side check
-			ans += "(" + tree2str(root->left) + ")";
-		if (root->right) { //right side check
-			if (!root->left) ans += "()"; //left side not present, but right side present
-			ans += "(" + tree2str(root->right) + ")"; 
-		}
-		return ans;
+    static void tree2Str(const TreeNode* node, string& ans) {
+        if (!node) return;   
+        ans += to_string(node->val);
+        if (node->left) { //left side check
+            ans += '(';
+            tree2Str(node->left, ans);
+            ans += ')';
+        }
+        if (node->right) { //right side check
+            if (!node->left) ans += "()"; //left side not present, but right side present
+            ans += '(';
+            tree2Str(node->right, ans);
+            ans += ')';
+        }
     }
 };
