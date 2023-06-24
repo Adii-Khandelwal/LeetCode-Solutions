@@ -9,15 +9,22 @@ public:
         size_t start = 0;
         size_t end = path.find('/');
 
-        while (end != string::npos) {
+        while (end != string::npos) 
+        {
             string segment = path.substr(start, end - start);
 
-            if (!segment.empty()) {
-                if (segment == "..") {
-                    if (!s.empty()) {
+            if (!segment.empty()) 
+            {
+                
+                if (segment == "..") 
+                {
+                    if (!s.empty()) 
+                    {
                         s.pop();
                     }
-                } else if (segment != ".") {
+                } 
+                else if (segment != ".") 
+                {
                     s.push(segment);
                 }
             }
@@ -27,21 +34,28 @@ public:
         }
 
         string segment = path.substr(start);
-        if (!segment.empty()) {
-            if (segment == "..") {
-                if (!s.empty()) {
+        if (!segment.empty()) 
+        {
+            if (segment == "..") 
+            {
+                if (!s.empty()) 
+                {
                     s.pop();
                 }
-            } else if (segment != ".") {
+            } 
+            else if (segment != ".") 
+            {
                 s.push(segment);
             }
         }
 
-        if (s.empty()) {
+        if (s.empty()) 
+        {
             return "/";
         }
 
-        while (!s.empty()) {
+        while (!s.empty()) 
+        {
             res = '/' + s.top() + res;
             s.pop();
         }
