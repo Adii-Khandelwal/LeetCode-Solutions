@@ -1,37 +1,40 @@
 class Solution {
 public:
-    void nextPermutation(vector<int>& nums) {
+    void nextPermutation(vector<int>& A) {
         
-     int n=nums.size();
-        
-        int lastg=-1;
-        int i=1;
-      while(i<n)
-        {
-            if(nums[i]>nums[i-1])
-            {
-                lastg=i;
-            }
-            i++;
+    int n = A.size(); // size of the array.
+
+    // Step 1: Find the break point:
+    int ind = -1; // break point
+    for (int i = n - 2; i >= 0; i--) {
+        if (A[i] < A[i + 1]) {
+            // index i is the break point
+            ind = i;
+            break;
         }
-        
-        if(lastg==-1)
-        {
-            for(int i=0;i<n/2;i++)
-            swap(nums[i],nums[n-i-1]);
-            return;
+    }
+
+    // If break point does not exist:
+    if (ind == -1) {
+        // reverse the whole array:
+        reverse(A.begin(), A.end());
+        return ;
+    }
+
+    // Step 2: Find the next greater element
+    //         and swap it with arr[ind]:
+
+    for (int i = n - 1; i > ind; i--) {
+        if (A[i] > A[ind]) {
+            swap(A[i], A[ind]);
+            break;
         }
-        
-        int ind=lastg;
-        
-        for(int i=lastg;i<n;i++)
-        {
-            if(nums[lastg-1]<nums[i] and nums[ind]>nums[i])
-                ind=i;
-        }
-        swap(nums[lastg-1],nums[ind]);
-        sort(nums.begin()+lastg,nums.end());
-        
+    }
+
+    // Step 3: reverse the right half:
+    reverse(A.begin() + ind + 1, A.end());
+
+
         
         
         
