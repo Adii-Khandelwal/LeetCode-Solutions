@@ -8,7 +8,7 @@ class Solution
             int j = 0;
             int n = nums.size();
             int sum = 0;
-            int cnt = 1;
+            
             int mini = INT_MAX;
             while (j < n)
             {
