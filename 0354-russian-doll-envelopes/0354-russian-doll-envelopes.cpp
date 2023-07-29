@@ -1,5 +1,11 @@
 class Solution {
 public:
+     static bool comp(vector<int> &a, vector<int> &b){
+        if(a[0]==b[0]){
+            return a[1]>b[1];
+        }
+        return a[0]<b[0];
+    }
     int binarySearch(vector<int>& dp, int val) {
         int lo = 0, hi = dp.size() - 1, res = 0;
         while (lo <= hi) {
@@ -15,9 +21,7 @@ public:
     }
 
     int maxEnvelopes(vector<vector<int>>& envelopes) {
-        sort(envelopes.begin(), envelopes.end(), [](const vector<int>& a, const vector<int>& b) {
-            return a[0] == b[0] ? b[1] < a[1] : a[0] < b[0];
-        });
+        sort(envelopes.begin(), envelopes.end(),comp );
 
         vector<int> LIS(envelopes.size() + 1, INT_MAX);
         LIS[0] = INT_MIN;
