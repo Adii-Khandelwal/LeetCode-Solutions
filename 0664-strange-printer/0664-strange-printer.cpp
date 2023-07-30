@@ -1,35 +1,29 @@
 class Solution {
 public:
-    int strangePrinter(string s) {
-          if (s.size() == 0) {
-            return 0;
+   vector<vector<int>>dp;
+
+    int solve(string &s, int i, int j){
+        if(i > j) return 0;
+
+        if(dp[i][j] != 0) return dp[i][j];
+
+        int x = i;
+        while(x+1 <= j && s[x] == s[x+1]){  //find the end of the first same character in the substring , x is the end 
+            x++;   //stores the ending index of this sequence.
         }
 
-        int n = s.length();
-       vector<vector<int>>state(n,vector<int>(n,0));
+        int ans = 1 + solve(s,x+1, j);   // number of turns needed to print the rest of the substring after the first same character sequence
 
-        for (int i = 0; i < n; i++) {
-            state[i][i] = 1;
-        }
-
-        for (int i = n - 1; i >= 0; i--) {
-            for (int dist = 1; dist + i < n; dist++) {
-                int j = dist + i;
-                if (dist == 1) {
-                    state[i][j] = (s[i] == s[j]) ? 1 : 2;
-                    continue;
-                }
-                state[i][j] = INT_MAX;
-                for (int k = i; k + 1 <= j; k++) {
-                    int tmp = state[i][k] + state[k + 1][j];
-                    state[i][j] = min(state[i][j], tmp);
-                }
-                if (s[i] == s[j]) {
-                    state[i][j]--;
-                }
+        for(int k = x+1; k<=j; k++){
+            if(s[k] == s[i]){
+                ans = min(ans, solve(s,k,j) + solve(s,x+1, k-1));  //solve(s, k, j) to find the minimum number of turns needed to print the rest of the substring after this character, and solve(s, x + 1, k - 1) to find the minimum number of turns needed to print the part of the substring between the first same character sequence and the current character
             }
         }
-
-        return state[0][n - 1];
+        return dp[i][j] = ans;
+    }
+    
+    int strangePrinter(string s) {
+       dp=vector<vector<int>>(s.size(),vector<int>(s.size(),0));
+       return solve(s,0,s.size()-1);
     }
 };
