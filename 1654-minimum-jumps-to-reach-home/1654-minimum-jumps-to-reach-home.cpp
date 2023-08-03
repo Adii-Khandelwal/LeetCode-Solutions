@@ -13,7 +13,7 @@ public:
         
         
         if(dp[i][back]!=-1)return dp[i][back];
-        int forward = 0;
+       
        
         dp[i][back] = 1 + solve(i+a,0,a,b,x);
        
