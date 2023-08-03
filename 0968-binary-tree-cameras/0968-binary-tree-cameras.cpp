@@ -17,16 +17,10 @@ public:
         if(!root)
             return;
         
-        dfs(root->left, root); //look to left subtree
-        dfs(root->right, root); //look to right subtree
+        dfs(root->left, root); 
+        dfs(root->right, root);
         
-        /*
-                    root
-                    /  \
-                   /    \
-                  /      \
-                Left    Right    : Simply do a dry run in this to understand
-        */
+     
         
         if((parent == NULL && covered.find(root) == covered.end()) 
            ||
@@ -35,10 +29,10 @@ public:
            (covered.find(root->right) == covered.end())) {
             count++;
             
-            covered.insert(parent); //parent
-            covered.insert(root); //itself
-            covered.insert(root->left); //left child
-            covered.insert(root->right); //right child
+            covered.insert(parent); 
+            covered.insert(root); 
+            covered.insert(root->left); 
+            covered.insert(root->right);
             
         }
     }
