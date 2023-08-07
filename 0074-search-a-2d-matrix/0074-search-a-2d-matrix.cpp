@@ -2,8 +2,7 @@ class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         
-        int m=matrix.size();
-        int n=matrix[0].size();
+    
 //         int j=m-1;
     
         
@@ -38,6 +37,8 @@ public:
         
         
         
+            int m=matrix.size();
+        int n=matrix[0].size();
         int l=0;
         int r=m*n-1;
         
