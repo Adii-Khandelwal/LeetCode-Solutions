@@ -1,28 +1,23 @@
 class Solution {
 public:
     bool isValidSudoku(vector<vector<char>>& board) {
+      vector<set<int>> rows(9), cols(9), blocks(9);
         
-        
-        int used1[9][9]={0};
-        int used2[9][9]={0};
-        int used3[9][9]={0};
-        int k;
-        for(int i=0;i<9;i++)
-        {
-            for(int j=0;j<9;j++)
-            {
-                if(board[i][j]!='.')
-                {
-                    int num=board[i][j]-'0'-1;
-                    k=i/3*3+j/3;
-                    if(used1[i][num] || used2[j][num] || used3[k][num])
-                        return false;
-                    used1[i][num] = used2[j][num] = used3[k][num]=1;
-                }
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                
+                if (board[i][j] == '.') continue;
+                
+                int curr = board[i][j] - '0';
+                if (rows[i].count(curr) || cols[j].count(curr) || blocks[(i/3)*3+j/3].count(curr)) 
+                    return false;
+                
+                rows[i].insert(curr);
+                cols[j].insert(curr);
+                blocks[(i/3)*3+j/3].insert(curr);
             }
         }
+        
         return true;
-        
-        
     }
 };
