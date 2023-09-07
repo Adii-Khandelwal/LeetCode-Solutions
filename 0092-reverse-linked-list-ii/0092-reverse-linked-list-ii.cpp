@@ -22,8 +22,10 @@ public:
         ListNode *curr = prev->next; // curr pointer will be just after prev
         // reversing
         for(int i = 0; i < right - left; i++){
-            ListNode *forw = curr->next; // forw pointer will be after curr
-            curr->next = forw->next;
+            ListNode *forw = curr->next; 
+            // forw pointer will be after curr in every iteration
+            
+            curr->next = forw->next;//prev will be in one place only
             forw->next = prev->next;
             prev->next = forw;
         }
