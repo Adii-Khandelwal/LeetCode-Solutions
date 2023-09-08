@@ -3,8 +3,7 @@ public:
   
     
     
-    
-    vector<vector<int>> generate(int numRows) {
+      vector<vector<int>> generate(int numRows) {
         
         
         int n=numRows;
@@ -24,7 +23,8 @@ public:
         
         
         
-        
+        // TC-> O(n2)
+        // SC-> O(1) , since question asked 2d vector         
         
        
         
