@@ -19,11 +19,12 @@ public:
 	 int result=0;
 	 for (int i = 0; i < size; i++)
 	 {
-		 result+=num[i];
+		 result+=num[i];      //MAHI KUMARI               love  you candyyyyyyy
 		// cout<<num[i]<<" ";
 	 }
 	 return result;
-      
+//       Do it in two directions.
+// The first loop makes sure children with a higher rating get more candy than its left neighbor; the second loop makes sure children with a higher rating get more candy than its right neighbor.
         
     }
 };
