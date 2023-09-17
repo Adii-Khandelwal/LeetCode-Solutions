@@ -1,33 +1,39 @@
 class Solution {
 public:
-    unordered_map<int,int> mp;  //to store freqency of all unique elements.
-    vector<vector<int>> ans;    // to store all permutations once formed.
-    vector<int> curr;           //curr is empty initially, and is formed step by step 
-                                //one all elements are used in curr, it is pushed in ans.
-    void permutations(int idx,vector<int>& nums){
-        int n=nums.size();
-        
-        if(idx==n){                //all elements are used then push it in ans array.
-            ans.push_back(curr);
+     void find(vector<int>& nums, int f[], vector<int>&ds, set<vector<int>> &ans){
+        if(ds.size()==nums.size()){
+            ans.insert(ds);
             return;
         }
-        
-        for(auto &k: mp){
-            int key=k.first;    //the element.
-            int val=k.second;   //its frequency.
-            
-            if(val==0) continue;    // val==0 means this element is used completely
-                                    // and cannot be further use.
-            curr.push_back(key);mp[key]--;  //else use this element and form a permutation.
-            permutations(idx+1,nums);       
-            curr.pop_back();mp[key]++;      // pop back so as to leave no trail of previous
-        }                                   // permutations formed.
+
+        for(int i =0;i<nums.size();i++){
+            if(f[i]==0){
+                ds.push_back(nums[i]);
+                f[i]=1;
+                find(nums,f,ds,ans);
+                ds.pop_back();
+                f[i]=0;
+            }
+        }
     }
-    
+
     vector<vector<int>> permuteUnique(vector<int>& nums) {
-        for(auto &k: nums) mp[k]++; //storing frequency of elements.
-        permutations(0,nums);
         
-        return ans; 
+        set<vector<int>> ans;
+        vector<int> ds;
+        int f[nums.size()];
+
+        for(int i=0;i<nums.size();i++)
+            f[i]=0;
+
+        find(nums,f,ds,ans);
+
+        vector<vector<int>>res;
+
+        for(auto it : ans){
+            vector<int> temp = it;
+            res.push_back(temp);
+        }
+        return res;
     }
 };
