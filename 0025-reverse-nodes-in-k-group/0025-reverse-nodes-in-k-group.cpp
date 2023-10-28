@@ -22,53 +22,53 @@ public:
         return cnt;
     }
     ListNode* reverseKGroup(ListNode* head, int k) {
-//         ListNode *cursor=head;
-//         for(int i=0;i<k;i++)
-//         {
-//             if(cursor==NULL)return head;
-//             cursor=cursor->next;
-//         }
-        
-//         ListNode* curr=head,*prev=NULL,*nxt=NULL;
-//         for(int i=0;i<k;i++)
-//         {
-//             nxt=curr->next;
-//             curr->next=prev;
-//             prev=curr;
-//             curr=nxt;
-//         }
-//         head->next=reverseKGroup(curr,k);
-//         return prev;
-       if(!head)
-            return NULL;
-    
-        int len = getLengthOfLinkedList(head);
-        if(len<k)
-            return head;
-        
-        int numberOfGroupsToReverse = len/k;
-        
-        ListNode *dummyNode = new ListNode(-1);
-        dummyNode->next = head;
-        ListNode *start = dummyNode;
-
-        ListNode *pre,*remaining,*nxt;
-        for(int i=0;i<numberOfGroupsToReverse;i++)
+        ListNode *cursor=head;
+        for(int i=0;i<k;i++)
         {
-            pre = NULL;
-            remaining = head;
-            for(int j=0;j<k;j++)
-            {
-                nxt = head->next;
-                head->next = pre;
-                pre=head;
-                head=nxt;
-            }
-            start->next = pre;
-            remaining->next = head;
-            start = remaining;
+            if(cursor==NULL)return head;
+            cursor=cursor->next;
         }
         
-        return dummyNode->next;
+        ListNode* curr=head,*prev=NULL,*nxt=NULL;
+        for(int i=0;i<k;i++)
+        {
+            nxt=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=nxt;
+        }
+        head->next=reverseKGroup(curr,k);
+        return prev;
+//        if(!head)
+//             return NULL;
+    
+//         int len = getLengthOfLinkedList(head);
+//         if(len<k)
+//             return head;
+        
+//         int numberOfGroupsToReverse = len/k;
+        
+//         ListNode *dummyNode = new ListNode(-1);
+//         dummyNode->next = head;
+//         ListNode *start = dummyNode;
+
+//         ListNode *pre,*remaining,*nxt;
+//         for(int i=0;i<numberOfGroupsToReverse;i++)
+//         {
+//             pre = NULL;
+//             remaining = head;
+//             for(int j=0;j<k;j++)
+//             {
+//                 nxt = head->next;
+//                 head->next = pre;
+//                 pre=head;
+//                 head=nxt;
+//             }
+//             start->next = pre;
+//             remaining->next = head;
+//             start = remaining;
+//         }
+        
+//         return dummyNode->next;
     }
 };
