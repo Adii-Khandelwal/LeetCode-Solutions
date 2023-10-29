@@ -36,7 +36,8 @@ public:
                 cur -> next = rightNode;                  // set its next pointer to rightNode
                 rightNode = cur;                          // update rightNode as cur for next iteration
                 if(cur -> right)                          // if a child exists
-                    q.push(cur -> right),                 // IMP: push right first to do right-to-left BFS
+                    q.push(cur -> right);              // IMP: push right first to do right-to-left BFS
+                if(cur -> left)
                     q.push(cur -> left);                  // then push left
             }
         }
