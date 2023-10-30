@@ -48,7 +48,7 @@ public:
         
         ListNode *p=head;
         int cnt=0;
-        ListNode *n1,*n2;
+        ListNode *n1,*n2=head;
         for(p=head;p!=NULL;p=p->next)
         {
             cnt++;
@@ -64,8 +64,5 @@ public:
         
         return head;
         
-        
-        
-        
-    }
+        }
 };
