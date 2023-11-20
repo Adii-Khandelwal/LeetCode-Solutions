@@ -51,7 +51,7 @@ public:
         }
 
         int cnt = 0;
-        for (auto &it : hashmap) {
+        for (auto it : hashmap) {
             if (ds.findPar(it.first) == it.first) cnt++;
         }
 
